@@ -18,13 +18,14 @@ import CheckAuth from './components/common/CheckAuth'
 import UnauthPage from './pages/unauth-page/Index'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkAuth } from '../store/auth-slice'
+import { Skeleton } from "@/components/ui/skeleton"
 const App = () => {
   const {isAuthenticated,user,isLoading} = useSelector(state=> state.auth)
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(checkAuth());
   },[dispatch])
-  if(isLoading) return <div>Loading....</div>
+  if(isLoading) return <Skeleton className='w-[800] bg-gray-400 h-[600px]'/>
   return (
     <div className='flex flex-col overflow-hidden bg-white'>
       <Routes>
@@ -41,7 +42,7 @@ const App = () => {
           </CheckAuth>}>
             <Route path='dashboard' element={<Dashboard/>}></Route>
             <Route path='features' element={<Features/>} ></Route>
-            <Route path='orders' element={<Orders/>} ></Route>
+            <Route path='orders' element={<Orders/>} ></Route> 
             <Route path='products' element={<Products/>} ></Route>
         </Route>
         <Route path='/shop' element={
