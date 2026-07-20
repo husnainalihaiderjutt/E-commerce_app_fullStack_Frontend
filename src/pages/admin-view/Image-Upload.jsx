@@ -5,10 +5,11 @@ import { FileIcon, UploadCloudIcon, XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ProductImageUpload = ({imageFile,setImageFile,uploadedImageUrl , setUploadedImageUrl}) => {
-    const inputRef=useRef(null);
-    const handleImageFileChange = (e)=>{
-       const selectedFile = e.target.files?.[0];
-       if(selectedFile) setImageFile(selectedFile);
+const inputRef=useRef(null);
+
+const handleImageFileChange = (e)=>{
+    const selectedFile = e.target.files?.[0];
+    if(selectedFile) setImageFile(selectedFile);
 }
 const handleDrop = (e)=>{
     e.preventDefault()
