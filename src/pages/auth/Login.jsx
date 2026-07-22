@@ -19,7 +19,6 @@ const onSubmit = (e)=>{
   dispatch(loginUser(formData)).then((data)=>{
      if (data.payload?.success) {
       toast.success("Login successful!", { position: "top-right" });
-      navigate("/auth/login");
       }   
       else {
       toast.error(data.payload?.message || "Login failed"  , { position: "top-right" });

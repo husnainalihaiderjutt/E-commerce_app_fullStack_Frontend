@@ -1,10 +1,12 @@
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input';
-import React, { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { FileIcon, UploadCloudIcon, XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import axios from 'axios';
+import { toast } from "sonner"
 
-const ProductImageUpload = ({imageFile,setImageFile,uploadedImageUrl , setUploadedImageUrl}) => {
+const ProductImageUpload = ({imageLoadingState,setImageLoadingState,imageFile,setImageFile,uploadedImageUrl,setUploadedImageUrl}) => {
 const inputRef=useRef(null);
 
 const handleImageFileChange = (e)=>{
@@ -25,6 +27,33 @@ const handleRemoveImage = ()=>{
         inputRef.current.value = ''
     }
 }
+
+async function uploadImageToCloudinary() {
+    setImageLoadingState(true);
+
+    const data = new FormData();
+    data.append("my_file", imageFile);
+
+    try {
+        const response = await axios.post(
+            "http://localhost:5000/api/admin/products/upload-image",
+            data
+        );
+
+        if (response?.data?.success) {
+            setUploadedImageUrl(response.data.result.url);
+            toast.success("Image Uploaded Successfully", { position: "top-right" });
+        }
+    } catch (error) {
+        toast.error("Error occurred while uploading image", { position: "top-right" });
+    } finally {
+        setImageLoadingState(false);
+    }
+}
+
+useEffect(()=>{
+    if(imageFile !==null) uploadImageToCloudinary()
+},[imageFile])
 return (
     <div className='w-full max-w-md mx-auto mb-4 '>
         <Label className="text-lg font-semibold mb-2 block">Upload Image </Label>

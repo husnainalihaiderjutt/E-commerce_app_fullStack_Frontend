@@ -47,9 +47,9 @@ const SideBar = ({open,setOpen}) => {
           <SheetContent side='left' className="w-64">
              <div className='flex flex-col h-full'>
                <SheetHeader className='border-b'>
-                 <SheetTitle className="flex gap-2 my-5">
+                 <SheetTitle className="flex gap-2 my-5 ">
                   <ChartNoAxesCombined size={30}/>
-                    <h1 className='text-2xl font-extrabold'>Admin Pannel</h1>
+                    <h2 className='text-xl font-extrabold'>Admin Pannel</h2> 
                  </SheetTitle>
                </SheetHeader>
                <MenuItems setOpen={setOpen}/>
@@ -59,7 +59,7 @@ const SideBar = ({open,setOpen}) => {
        <aside className='hidden w-64 flex-col border-r bg-background p-6 lg:flex'>
           <div onClick={()=>navigate('/admin/dashboard')} className='flex cursor-pointer items-center gap-2'>
              <ChartNoAxesCombined size={30}/>
-             <h1 className='text-2xl font-extrabold'>Admin Pannel</h1>
+            <h2 className='text-xl font-extrabold'>Admin Pannel</h2> 
           </div>
           <MenuItems/>
 

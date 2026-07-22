@@ -21,6 +21,7 @@ const Products = () => {
   const [formData,setFormData] = useState(initialFormData);
   const [imageFile,setImageFile] = useState(null);
   const [uploadedImageUrl , setUploadedImageUrl] = useState("");
+  const [imageLoadingState,setImageLoadingState]=useState(false);
   const onSubmit = ()=>{
 
   }
@@ -38,8 +39,14 @@ const Products = () => {
                  <SheetTitle>Add New Product</SheetTitle>
               </SheetHeader>
               <div className='px-4'>
-                <ProductImageUpload imageFile={imageFile} setImageFile={setImageFile} uploadedImageUrl={uploadedImageUrl} setUploadedImageUrl={setUploadedImageUrl}/>
-                 <CommonForm formControls={addProductFormElements} onSubmit={onSubmit} formData={formData} setFormData={setFormData} buttonText='Add Product'></CommonForm>
+                <ProductImageUpload imageFile={imageFile} setImageFile={setImageFile} 
+                uploadedImageUrl={uploadedImageUrl} 
+                setUploadedImageUrl={setUploadedImageUrl} imageLoadingState={imageLoadingState}
+                 setImageLoadingState={setImageLoadingState}/>
+                 <CommonForm formControls={addProductFormElements} 
+                 onSubmit={onSubmit} formData={formData} 
+                 setFormData={setFormData} 
+                 buttonText='Add Product'></CommonForm>
               </div>
           </SheetContent>
        </Sheet>
