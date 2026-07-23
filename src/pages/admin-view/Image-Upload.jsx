@@ -5,6 +5,7 @@ import { FileIcon, UploadCloudIcon, XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
 import { toast } from "sonner"
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ProductImageUpload = ({imageLoadingState,setImageLoadingState,imageFile,setImageFile,uploadedImageUrl,setUploadedImageUrl}) => {
 const inputRef=useRef(null);
@@ -63,6 +64,8 @@ return (
               <UploadCloudIcon className='w-10 h-10 text-muted-foreground mb-2'/>
               <span>Drag & drop or click to Upload Image</span>
             </Label> :(
+            imageLoadingState?
+            <Skeleton className='h-10 bg-gray-100'/> :
             <div className='flex items-center justify-between'>
                 <div className='flex items-center'>
                      <FileIcon className='w-7 h-8 text-primary mr-2'/>    

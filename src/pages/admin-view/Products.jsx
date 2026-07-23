@@ -1,9 +1,11 @@
-import {Fragment, useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import CommonForm from '@/components/common/Form';
 import { addProductFormElements } from '@/config';
 import ProductImageUpload from './Image-Upload';
+import { useDispatch } from 'react-redux';
+import { fetchProductAdmin } from '../../../store/admin';
 
 
 const initialFormData ={
@@ -22,9 +24,13 @@ const Products = () => {
   const [imageFile,setImageFile] = useState(null);
   const [uploadedImageUrl , setUploadedImageUrl] = useState("");
   const [imageLoadingState,setImageLoadingState]=useState(false);
-  const onSubmit = ()=>{
-
+  const dispatch = useDispatch()
+  const onSubmit = (e)=>{
+       e.preventDefault();
   }
+  useEffect(()=>{
+     dispatch(fetchProductAdmin());
+  },[dispatch])
   return (
     <Fragment>
        <div className='mb-5 flex justify-end w-full'>
